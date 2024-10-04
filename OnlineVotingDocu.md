@@ -1,4 +1,6 @@
-Online Voting System
+# Welcome to the online-voting-system wiki!
+
+# Online Voting System
 
 ## INTRODUCTION
 
@@ -130,25 +132,36 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ## Table 7: `users`
 
-| Column Name          | Data Type               | Constraints                                 |
-| -------------------- | ----------------------- | ------------------------------------------- |
-| `user_id`            | `int`                   | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY` |
-| `username`           | `varchar(45)`           | `NOT NULL`                                  |
-| `salt`               | `varchar(45)`           | `NOT NULL`                                  |
-| `password_hashed`    | `varchar(255)`          | `NOT NULL`                                  |
-| `email`              | `varchar(100)`          | `NOT NULL`                                  |
-| `date_of_birth`      | `date`                  | `NOT NULL`                                  |
-| `registration_date`  | `datetime`              | `NOT NULL`, `DEFAULT CURRENT_TIMESTAMP`     |
-| `first_name`         | `varchar(100)`          | `NOT NULL`                                  |
-| `last_name`          | `varchar(100)`          | `NOT NULL`                                  |
-
-### Indexes
-| Index Name           | Description                                   |
-| -------------------- | --------------------------------------------- |
-| `PRIMARY`            | (`user_id`, `email`, `username`)              |
+| Column Name            | Data Type               | Constraints                                           |
+| ---------------------- | ----------------------- | ----------------------------------------------------- |
+| `user_id`              | `int`                   | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`           |
+| `salt`                 | `varchar(45)`           | `NOT NULL`                                            |
+| `hashed_password`      | `varchar(255)`          | `NOT NULL`                                            |
+| `otp_secret`           | `varchar(20)`           | `DEFAULT NULL`                                        |
+| `otp_expiry`           | `datetime`              | `DEFAULT NULL`                                        |
+| `reset_token`          | `varchar(175)`          | `DEFAULT NULL`                                        |
+| `reset_expiry`         | `datetime`              | `DEFAULT NULL`                                        |
+| `verified_account`     | `tinyint`               | `NOT NULL`, `DEFAULT 0`                               |
+| `verification_token`    | `varchar(175)`          | `DEFAULT NULL`                                       |
+| `verification_expiry`  | `datetime`              | `DEFAULT NULL`                                        |
 
 
-## Table 8: `votes`
+## Table 9: `profile_table`
+
+| Column Name            | Data Type               | Constraints                                           |
+| ---------------------- | ----------------------- | ----------------------------------------------------- |
+| `user_id`              | `int`                   | `NOT NULL`, `PRIMARY KEY`                             |
+| `username`             | `varchar(45)`           | `NOT NULL`, `UNIQUE`                                  |
+| `email`                | `varchar(100)`          | `NOT NULL`, `UNIQUE`                                  |
+| `first_name`           | `varchar(100)`          | `NOT NULL`                                            |
+| `last_name`            | `varchar(100)`          | `NOT NULL`                                            |
+| `date_of_birth`        | `date`                  | `NOT NULL`                                            |
+| `account_creation_date` | `datetime`             | `NOT NULL`, `DEFAULT CURRENT_TIMESTAMP`              |
+| **Foreign Key**         |                        | `fk_profile_user_id` REFERENCES `users(user_id)` ON DELETE CASCADE ON UPDATE CASCADE |
+
+
+
+## Table 10: `votes`
 
 | Column Name            | Data Type       | Constraints                                                                              |
 | ---------------------- | --------------- | ---------------------------------------------------------------------------------------- |
@@ -176,7 +189,7 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ## ERD
 
-![EERDD](res/eerd.png)
+![eerd](https://github.com/user-attachments/assets/0227e466-48d0-475a-b910-f96fcae0b720)
 
 ## Non Functional Requirements
 
