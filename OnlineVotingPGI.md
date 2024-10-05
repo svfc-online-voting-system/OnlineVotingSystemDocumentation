@@ -75,4 +75,4 @@ credibility of the candidate, prompting them to make an informed decision.
 
 ## G. Estimated Project Duration
 
-Prepared by:
+Prepared by: Aquino Froilan, Lotino Darsie, Villaester Princess
