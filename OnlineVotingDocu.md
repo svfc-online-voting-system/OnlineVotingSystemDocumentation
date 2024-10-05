@@ -39,67 +39,125 @@ The online voting system's architecture must be enough to handle high volumes of
 ## Work breakdown Structure
 1. Project Initiation
 - Define project scope
+  Clearly outline what the project will achieve and what is outside its boundaries.
 - Identify stakeholders
+  Determine who will be affected by or have an interest in the project (e.g., voters, 
+  election officials, government bodies).
 - Develop project charter
+  Create a formal document that authorizes the project, outlining objectives, scope, and 
+  key stakeholders.
 - Conduct feasibility study
+  Assess whether the project is viable technically, financially, and operationally.
 2. Planning Phase
 - Create project plan
+  Develop a comprehensive plan that includes timelines, resources, and deliverables.
 - Define objectives and deliverables
+  Specify what the project aims to accomplish and what tangible outputs will be produced.
 - Set timelines and milestones
+  Establish a schedule with key dates for deliverables and checkpoints.
 - Allocate resources
+  Determine what resources (people, technology, budget) are needed to complete the project.
 - Risk assessment
+  Identify potential risks that could impact the project and plan how to manage them.
 - Identify potential risks (e.g., security vulnerabilities)
+  List possible challenges (e.g., security breaches, technical failures).
 - Develop mitigation strategies
+  Create plans to minimize or address identified risks.
 3. System Design
 - Architectural design
+  Define how different components of the system will interact.
 - Define system architecture (e.g., client-server model)
+  Outline the technical structure (e.g., client-server model).
 - Plan for scalability and performance optimization
+  Ensure the system can handle high volumes of traffic during peak voting periods.
 - User interface design
+   Create visual layouts and workflows for user interaction.
 - Develop wireframes and prototypes
+  Create initial designs to visualize user interactions before development begins.
 - Ensure accessibility features are integrated
+  Design interfaces that are usable by all individuals, including those with disabilities.
 4. Content Development
-- Document project features and characteristics:
+  Document project features and characteristics:
 - Accessible User Interface
+  Ensure the interface is easy to navigate for all users.
 - User Authentication
+  Implement secure login processes to verify voter identity.
 - Responsive Application
+  Ensure functionality across various devices (desktop, mobile).
 - Detailed Information about the Candidate
+  Provide voters with information on candidates running for election.
 - Secure Authentication and Identity Verification
+  Use robust methods to confirm voter identities securely.
 - Ballot Secrecy and Privacy
+  Implement measures to ensure votes remain confidential.
 - Real-Time Vote Tracking and Monitoring
+  Allow voters to track their vote status in real-time.
 - Automatic Vote Counting and Result Generation
+  Streamline counting processes to provide quick results after voting ends.
 - Auditability and Transparency
+  Maintain logs for verification of votes cast.
 - Bi-Language Support
+  Offer multiple language options for broader accessibility.
 - Data Protection and Compliance
+  Ensure adherence to legal standards regarding data privacy.
 5. Development Phase
-- Front-end development
+** Front-end development**
 - Implement user-friendly interface
+  Ensure ease of use in navigation and functionality.
 - Ensure responsive design for various devices
-- Back-end development
+  Adapt layouts for different screen sizes seamlessly.
+ **  Back-end development**
 - Develop secure authentication mechanisms
+  Implement systems to verify user identities securely.
 - Implement ballot secrecy and privacy protocols
+  Ensure that votes cannot be traced back to individual voters.
 - Create real-time vote tracking and monitoring features
+  Allow users to see their vote status live on the platform.
 - Database setup
+  Establish a secure database for storing voter information and voting records.
 - Design voter information database
+  Structure how voter data will be stored securely.
 - Implement data protection measures
+  Use encryption and other methods to protect sensitive information.
 6. Testing Phase
 - Unit testing of individual components
+  Test each part of the application separately to ensure it works as intended.
 - Integration testing to ensure seamless operation
+  Check how different components work together within the system.
 - User acceptance testing (UAT) for stakeholder feedback
+  Have actual users test the system to confirm it meets their needs.
 7. Security Measures Implementation
 - Implement encryption protocols for data protection
+  Use encryption methods to safeguard sensitive information during transmission and storage.
 - Establish identity verification processes to prevent fraud
+  Create robust systems that ensure only eligible voters can cast votes.
 - Conduct vulnerability assessments and penetration testing
+  Regularly test systems for weaknesses that could be exploited by malicious actors.
 8. Deployment Phase
 - Prepare for deployment
-- Finalize server setup and configurations
+  Finalize server setup and configurations necessary for hosting the application securely 
+  online. 
 - Launch online voting platform to the public
+  Make the platform available for voters on election day.
 9. Post-Deployment Activities
 - Monitor system performance and user feedback
+  Continuously check how well the system is functioning during its use in elections and 
+  gather feedback from users about their experience.
 - Address any issues or bugs reported by users
+  Quickly resolve any problems that arise during voting or result reporting.
 - Conduct a project retrospective to evaluate successes and areas for improvement
+  Review what worked well in the project execution process versus what could be improved 
+  for future projects.
 10. Documentation
 - Create user manuals and guides for voters
+  Develop clear instructions on how voters can register, log in, vote, check their status, 
+  etc.
 - Document technical specifications and system architecture
+  Provide detailed descriptions of how different parts of the system work together 
+  technically.
+- Compile a report on project outcomes and lessons learned
+  Summarize findings from both successes achieved through implementation as well as 
+  challenges faced throughout development.
 
 ## Functional Requirements
 
