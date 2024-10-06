@@ -159,7 +159,12 @@ The online voting system's architecture must be enough to handle high volumes of
   Summarize findings from both successes achieved through implementation as well as
   challenges faced throughout development.
 
-## Functional Requirements
+## Functional Requirements:
+**Authentication**: Users can log in or logout to their respective accounts securely and swiftly.
+**Different Vote Type**: Users can create a different type of voting i.e.,—poll type, electoral type, etc.
+**Visualize Tally Result**: Users are able to visualize the result of the poll or election.
+**Multi-factor Authentication**: To further enhance the security of the user's account, users are required to enter the OTP that the system sends to the email they used to register.
+
 
 ### User Requirements
 
@@ -167,11 +172,9 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ### Database Architecture
 
-### This is not yet final.
-
 ### Data Dictionary
 
-# Database Tables
+## Database Tables
 
 ### Administrators Table
 
@@ -314,6 +317,7 @@ The online voting system's architecture must be enough to handle high volumes of
 ![eerd](./res/eerd.png)
 
 ## Non Functional Requirements
+**Secure Authentication**: Using JSON Web Token, we leverage HTTP-based authentication tokens; these tokens are not accessible in JavaScript to reduce the XSS attack, thereby protecting user data and sessions from malicious actors.
 
 ### Functional Testing Summary
 
