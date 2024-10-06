@@ -164,6 +164,12 @@ The online voting system's architecture must be enough to handle high volumes of
 **Different Vote Type**: Users can create a different type of voting i.e.,—poll type, electoral type, etc.
 **Visualize Tally Result**: Users are able to visualize the result of the poll or election.
 **Multi-factor Authentication**: To further enhance the security of the user's account, users are required to enter the OTP that the system sends to the email they used to register.
+**Data Management**: User are able to create, and delete votes.
+
+## Non Functional Requirements
+**Secure Authentication**: Using JSON Web Token, we leverage HTTP-based authentication tokens; these tokens are not accessible in JavaScript to reduce the XSS attack, thereby protecting user data and sessions from malicious actors.
+**Usability**: The system allows users to complete the registration process within 5 minutes. Provided that they have an internet connection that is strong enough.
+**Hashed Password**: For added security user's password are hashed and prepended with salt to prevent rainbow table attacks.
 
 
 ### User Requirements
@@ -315,9 +321,6 @@ The online voting system's architecture must be enough to handle high volumes of
 ## ERD
 
 ![eerd](./res/eerd.png)
-
-## Non Functional Requirements
-**Secure Authentication**: Using JSON Web Token, we leverage HTTP-based authentication tokens; these tokens are not accessible in JavaScript to reduce the XSS attack, thereby protecting user data and sessions from malicious actors.
 
 ### Functional Testing Summary
 
