@@ -98,6 +98,34 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ### User Requirements
 
+| No. |Users                    | System Features                              | Requirements                                                            | 
+|-----|-------------------------|----------------------------------------------|-------------------------------------------------------------------------| 
+| 1   | Voters                  | User Registration                            | Must provide identification information (e.g., ID, email)               | 
+|     |                         | Secure Login/Logout                          | Implement multi-factor authentication for security                      |                                
+|     |                         | Ballot Selection                             | Provide intuitive interface for selecting candidates/options            | 
+|     |                         | Vote Confirmation                            | Display confirmation message after vote is cast                         | 
+|     |                         | Voting Accessibility                         | Compliance with accessibility standards to ensure all users can vote.   | 
+|     |                         | Anonymous Voting                             | Ensure that votes are private and anonymous                             | 
+|     |                         | Vote Tracking                                | Allow users to track their voting status (e.g., ballot submitted)       | 
+|     |                         | Help & Support                               | FAQs, live chat, or tutorial videos for assistance                      |
+|     |                         | User Profile Management                      | Offer the option to update personal information and preferences         | 
+|     |                         | Feedback Mechanism                           | Collect user feedback on the voting experience                          | 
+| 2   | Administrators          | User Management                              | Manage voter registrations and access rights                            | 
+|     |                         | Election Setup                               | Define election parameters (dates, candidates, etc.)                    | 
+|     |                         | Vote Counting                                | Automated and secure tallying of votes                                  | 
+|     |                         | Reporting                                    | Generate reports on voter turnout and election results                  |
+|     |                         | Audit Trails                                 | Maintain logs of actions and changes made in the system                 | 
+|     |                         | Security Management                          | Monitor and manage system security protocols                            | 
+|     |                         | Issue Resolution                             | Handle disputes or issues raised by voters                              | 
+|     |                         | System Maintenance                           | Conduct regular updates and maintenance of the voting system            |
+| 3   | Election Officials      | Communication Tools                          | Tools for announcing results and communicating with voters              | 
+|     |                         | Compliance Tracking                          | Ensure adherence to election laws and regulations                       | 
+| 4   | Developers              | API Integration                              | Allow integration with third-party services (e.g., payment processing)  |
+|     |                         | System Scalability                           | Ensure system can handle increased loads during peak voting times       | 
+|     |                         | Security Features                            | Implement encryption, firewalls, and data protection measures           | 
+|     |                         | User Interface Design                        | Develop an intuitive and accessible UI for all user types               | 
+|     |                         | Documentation                                | Provide comprehensive documentation for users and administrators        |
+
 ### Use case
 
 ## Database Architecture
