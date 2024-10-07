@@ -128,6 +128,8 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ### Use case
 
+![USER_CASE](./res/user_case.png)
+
 ## Database Architecture
 
 ### Data Dictionary
