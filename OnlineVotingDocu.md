@@ -196,6 +196,7 @@ The online voting system's architecture must be enough to handle high volumes of
 
 -   **vote_type_id**: A unique identifier for each type of vote, automatically generated for uniqueness.
 -   **type_name**: This column indicates whether the vote is part of a "poll" or an "electoral" process, distinguishing between different types of voting scenarios.
+-   **title**: This column shows the title for specific vote, be it electoral and poll type.
 
 ---
 
