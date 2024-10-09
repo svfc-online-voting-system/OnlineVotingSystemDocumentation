@@ -192,6 +192,21 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ---
 
+**Poll Votes Table**
+- **poll_vote_id**: A unique identifier for each poll vote entry. It automatically increments to ensure distinction among votes.
+- **vote_id**: Links the poll vote to the specific vote cast in the system, with a foreign key reference to the "Votes" table.
+- **option_id**: Connects the poll vote to the selected option from the "Poll Options" table, allowing for tracking of individual selections.
+
+---
+
+**Electoral Votes Table**
+- **electoral_vote_id**: A unique identifier for each electoral vote entry. It automatically increments to distinguish between different votes.
+- **vote_id**: Links the electoral vote to the specific vote cast in the system, with a foreign key reference to the "Votes" table.
+- **candidate_id**: Links the electoral vote to the corresponding candidate in the system, ensuring clarity on whom the vote is for.
+- **vote_timestamp**: Captures the exact moment when the electoral vote was cast, providing transparency and enabling precise tracking of voting actions.
+
+---
+
 **Vote Types Table**
 
 -   **vote_type_id**: A unique identifier for each type of vote, automatically generated for uniqueness.
@@ -240,6 +255,34 @@ The online voting system's architecture must be enough to handle high volumes of
 | `PRIMARY`      | (`ballot_id`)    |                                                                                  |
 | `user_id`      | (`user_id`)      | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 | `vote_type_id` | (`vote_type_id`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`)                           |
+
+---
+
+**Electoral Votes**
+| Column Name         | Data Type  | Constraints                                   |
+| ------------------- | ---------- | --------------------------------------------- |
+| `electoral_vote_id` | `int`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`   |
+| `vote_id`           | `int`      | `NOT NULL`, `KEY vote_id`, `FOREIGN KEY`      |
+| `candidate_id`      | `int`      | `NOT NULL`, `KEY candidate_id`, `FOREIGN KEY` |
+
+|  **Indexes**   |    **Description**   |                                                                                             |
+| -------------- | -------------------- | ------------------------------------------------------------------------------------------- |
+| `PRIMARY`      | (`electoral_vote_id`)|                                                                                             |
+| `vote_id`      | (`vote_id`)          | `FOREIGN KEY` REFERENCES `votes` (`vote_id`) ON DELETE CASCADE ON UPDATE CASCADE            |
+| `candidate_id` | (`candidate_id`)     | `FOREIGN KEY` REFERENCES `candidates` (`candidates_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+---
+**Poll Votes**
+| Column Name   | Data Type | Constraints                                         | Description                                                                                        |
+|---------------|-----------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------|
+| `poll_vote_id`| `INT`     | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`         | Unique identifier for each poll vote entry.                                                        |
+| `vote_id`     | `INT`     | `NOT NULL`, `KEY`                                   | Foreign key linking to the `votes` table, identifying the specific vote record.                    |
+| `option_id`   | `INT`     | `NOT NULL`, `KEY`                                   | Foreign key linking to the `poll_options` table, indicating which option was selected in the poll. |
+
+| **Index Name**        | Description                                                                 |
+|-----------------------|-----------------------------------------------------------------------------|
+| `PRIMARY`             | Unique index on `poll_vote_id`.                                             |
+| `vote_id`             | Index for quick lookup of votes related to specific `vote_id`.              |
+| `option_id`           | Index for quick lookup of options related to specific `option_id`.          |
 
 ---
 
@@ -336,8 +379,6 @@ The online voting system's architecture must be enough to handle high volumes of
 | `vote_id`        | `int`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`       |
 | `user_id`        | `int`      | `NOT NULL`, `KEY user_id`, `FOREIGN KEY`          |
 | `vote_type_id`   | `int`      | `NOT NULL`, `KEY vote_type_id`, `FOREIGN KEY`     |
-| `candidate_id`   | `int`      | `DEFAULT NULL`, `KEY candidate_id`, `FOREIGN KEY` |
-| `option_id`      | `int`      | `DEFAULT NULL`, `KEY option_id`, `FOREIGN KEY`    |
 | `vote_timestamp` | `datetime` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`              |
 | `approved`       | `tinyint`  | `NOT NULL DEFAULT '0'`                            |
 
