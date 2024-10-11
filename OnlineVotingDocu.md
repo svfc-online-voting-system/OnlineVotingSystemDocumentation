@@ -98,33 +98,33 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ### User Requirements
 
-| No. |Users                    | System Features                              | Requirements                                                            |
-|-----|-------------------------|----------------------------------------------|-------------------------------------------------------------------------|
-| 1   | Voters                  | User Registration                            | Must provide identification information (e.g., ID, email)               |
-|     |                         | Secure Login/Logout                          | Implement multi-factor authentication for security                      |
-|     |                         | Ballot Selection                             | Provide intuitive interface for selecting candidates/options            |
-|     |                         | Vote Confirmation                            | Display confirmation message after vote is cast                         |
-|     |                         | Voting Accessibility                         | Compliance with accessibility standards to ensure all users can vote.   |
-|     |                         | Anonymous Voting                             | Ensure that votes are private and anonymous                             |
-|     |                         | Vote Tracking                                | Allow users to track their voting status (e.g., ballot submitted)       |
-|     |                         | Help & Support                               | FAQs, live chat, or tutorial videos for assistance                      |
-|     |                         | User Profile Management                      | Offer the option to update personal information and preferences         |
-|     |                         | Feedback Mechanism                           | Collect user feedback on the voting experience                          |
-| 2   | Administrators          | User Management                              | Manage voter registrations and access rights                            |
-|     |                         | Election Setup                               | Define election parameters (dates, candidates, etc.)                    |
-|     |                         | Vote Counting                                | Automated and secure tallying of votes                                  |
-|     |                         | Reporting                                    | Generate reports on voter turnout and election results                  |
-|     |                         | Audit Trails                                 | Maintain logs of actions and changes made in the system                 |
-|     |                         | Security Management                          | Monitor and manage system security protocols                            |
-|     |                         | Issue Resolution                             | Handle disputes or issues raised by voters                              |
-|     |                         | System Maintenance                           | Conduct regular updates and maintenance of the voting system            |
-| 3   | Election Officials      | Communication Tools                          | Tools for announcing results and communicating with voters              |
-|     |                         | Compliance Tracking                          | Ensure adherence to election laws and regulations                       |
-| 4   | Developers              | API Integration                              | Allow integration with third-party services (e.g., payment processing)  |
-|     |                         | System Scalability                           | Ensure system can handle increased loads during peak voting times       |
-|     |                         | Security Features                            | Implement encryption, firewalls, and data protection measures           |
-|     |                         | User Interface Design                        | Develop an intuitive and accessible UI for all user types               |
-|     |                         | Documentation                                | Provide comprehensive documentation for users and administrators        |
+| No. | Users              | System Features         | Requirements                                                           |
+| --- | ------------------ | ----------------------- | ---------------------------------------------------------------------- |
+| 1   | Voters             | User Registration       | Must provide identification information (e.g., ID, email)              |
+|     |                    | Secure Login/Logout     | Implement multi-factor authentication for security                     |
+|     |                    | Ballot Selection        | Provide intuitive interface for selecting candidates/options           |
+|     |                    | Vote Confirmation       | Display confirmation message after vote is cast                        |
+|     |                    | Voting Accessibility    | Compliance with accessibility standards to ensure all users can vote.  |
+|     |                    | Anonymous Voting        | Ensure that votes are private and anonymous                            |
+|     |                    | Vote Tracking           | Allow users to track their voting status (e.g., ballot submitted)      |
+|     |                    | Help & Support          | FAQs, live chat, or tutorial videos for assistance                     |
+|     |                    | User Profile Management | Offer the option to update personal information and preferences        |
+|     |                    | Feedback Mechanism      | Collect user feedback on the voting experience                         |
+| 2   | Administrators     | User Management         | Manage voter registrations and access rights                           |
+|     |                    | Election Setup          | Define election parameters (dates, candidates, etc.)                   |
+|     |                    | Vote Counting           | Automated and secure tallying of votes                                 |
+|     |                    | Reporting               | Generate reports on voter turnout and election results                 |
+|     |                    | Audit Trails            | Maintain logs of actions and changes made in the system                |
+|     |                    | Security Management     | Monitor and manage system security protocols                           |
+|     |                    | Issue Resolution        | Handle disputes or issues raised by voters                             |
+|     |                    | System Maintenance      | Conduct regular updates and maintenance of the voting system           |
+| 3   | Election Officials | Communication Tools     | Tools for announcing results and communicating with voters             |
+|     |                    | Compliance Tracking     | Ensure adherence to election laws and regulations                      |
+| 4   | Developers         | API Integration         | Allow integration with third-party services (e.g., payment processing) |
+|     |                    | System Scalability      | Ensure system can handle increased loads during peak voting times      |
+|     |                    | Security Features       | Implement encryption, firewalls, and data protection measures          |
+|     |                    | User Interface Design   | Develop an intuitive and accessible UI for all user types              |
+|     |                    | Documentation           | Provide comprehensive documentation for users and administrators       |
 
 ### Use case
 
@@ -193,17 +193,19 @@ The online voting system's architecture must be enough to handle high volumes of
 ---
 
 **Poll Votes Table**
-- **poll_vote_id**: A unique identifier for each poll vote entry. It automatically increments to ensure distinction among votes.
-- **vote_id**: Links the poll vote to the specific vote cast in the system, with a foreign key reference to the "Votes" table.
-- **option_id**: Connects the poll vote to the selected option from the "Poll Options" table, allowing for tracking of individual selections.
+
+-   **poll_vote_id**: A unique identifier for each poll vote entry. It automatically increments to ensure distinction among votes.
+-   **vote_id**: Links the poll vote to the specific vote cast in the system, with a foreign key reference to the "Votes" table.
+-   **option_id**: Connects the poll vote to the selected option from the "Poll Options" table, allowing for tracking of individual selections.
 
 ---
 
 **Electoral Votes Table**
-- **electoral_vote_id**: A unique identifier for each electoral vote entry. It automatically increments to distinguish between different votes.
-- **vote_id**: Links the electoral vote to the specific vote cast in the system, with a foreign key reference to the "Votes" table.
-- **candidate_id**: Links the electoral vote to the corresponding candidate in the system, ensuring clarity on whom the vote is for.
-- **vote_timestamp**: Captures the exact moment when the electoral vote was cast, providing transparency and enabling precise tracking of voting actions.
+
+-   **electoral_vote_id**: A unique identifier for each electoral vote entry. It automatically increments to distinguish between different votes.
+-   **vote_id**: Links the electoral vote to the specific vote cast in the system, with a foreign key reference to the "Votes" table.
+-   **candidate_id**: Links the electoral vote to the corresponding candidate in the system, ensuring clarity on whom the vote is for.
+-   **vote_timestamp**: Captures the exact moment when the electoral vote was cast, providing transparency and enabling precise tracking of voting actions.
 
 ---
 
@@ -234,10 +236,10 @@ The online voting system's architecture must be enough to handle high volumes of
 | `admin_id`  | `int`     | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`           |
 | `user_id`   | `int`     | `NOT NULL`, `KEY fk_user_id_admin_idx`, `FOREIGN KEY` |
 
-| **Indexes**            | **Description** |                                                                                  |
-| ---------------------- | --------------- | -------------------------------------------------------------------------------- |
-| `PRIMARY`              | (`admin_id`)    |                                                                                  |
-| `fk_user_id_admin_idx` | (`user_id`)     | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| **Indexes**                      | **Description** |                                                                                  |
+| -------------------------------- | --------------- | -------------------------------------------------------------------------------- |
+| `PRIMARY`                        | (`admin_id`)    |                                                                                  |
+| `FK_Administrator_Users_User_ID` | (`user_id`)     | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 
 ---
 
@@ -250,39 +252,44 @@ The online voting system's architecture must be enough to handle high volumes of
 | `vote_type_id` | `int`      | `NOT NULL`, `KEY vote_type_id`, `FOREIGN KEY` |
 | `submitted_at` | `datetime` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`          |
 
-| **Indexes**    | **Description**  |                                                                                  |
-| -------------- | ---------------- | -------------------------------------------------------------------------------- |
-| `PRIMARY`      | (`ballot_id`)    |                                                                                  |
-| `user_id`      | (`user_id`)      | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
-| `vote_type_id` | (`vote_type_id`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`)                           |
+| **Indexes**                          | **Description**                        |                                                                                  |
+| ------------------------------------ | -------------------------------------- | -------------------------------------------------------------------------------- |
+| `PRIMARY`                            | (`ballot_id`)                          |                                                                                  |
+| `FK_Ballots_Users_User_ID`           | (`FK_Ballots_Users_User_ID`)           | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| `FK_Ballots_Vote_Types_Vote_Type_ID` | (`FK_Ballots_Vote_Types_Vote_Type_ID`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`)                           |
 
 ---
 
 **Electoral Votes**
-| Column Name         | Data Type  | Constraints                                   |
-| ------------------- | ---------- | --------------------------------------------- |
-| `electoral_vote_id` | `int`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`   |
-| `vote_id`           | `int`      | `NOT NULL`, `KEY vote_id`, `FOREIGN KEY`      |
-| `candidate_id`      | `int`      | `NOT NULL`, `KEY candidate_id`, `FOREIGN KEY` |
 
-|  **Indexes**   |    **Description**   |                                                                                             |
-| -------------- | -------------------- | ------------------------------------------------------------------------------------------- |
-| `PRIMARY`      | (`electoral_vote_id`)|                                                                                             |
-| `vote_id`      | (`vote_id`)          | `FOREIGN KEY` REFERENCES `votes` (`vote_id`) ON DELETE CASCADE ON UPDATE CASCADE            |
-| `candidate_id` | (`candidate_id`)     | `FOREIGN KEY` REFERENCES `candidates` (`candidates_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| Column Name         | Data Type | Constraints                                   |
+| ------------------- | --------- | --------------------------------------------- |
+| `electoral_vote_id` | `int`     | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`   |
+| `vote_id`           | `int`     | `NOT NULL`, `KEY vote_id`, `FOREIGN KEY`      |
+| `candidate_id`      | `int`     | `NOT NULL`, `KEY candidate_id`, `FOREIGN KEY` |
+
+| **Indexes**                                  | **Description**                                |                                                                                             |
+| -------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `PRIMARY`                                    | (`electoral_vote_id`)                          |                                                                                             |
+| `FK_Electoral_Votes_Votes_Vote_ID`           | (`FK_Electoral_Votes_Votes_Vote_ID`)           | `FOREIGN KEY` REFERENCES `votes` (`vote_id`) ON DELETE CASCADE ON UPDATE CASCADE            |
+| `FK_Electoral_Votes_Candidates_Candidate_ID` | (`FK_Electoral_Votes_Candidates_Candidate_ID`) | `FOREIGN KEY` REFERENCES `candidates` (`candidates_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+
 ---
-**Poll Votes**
-| Column Name   | Data Type | Constraints                                         | Description                                                                                        |
-|---------------|-----------|-----------------------------------------------------|----------------------------------------------------------------------------------------------------|
-| `poll_vote_id`| `INT`     | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`         | Unique identifier for each poll vote entry.                                                        |
-| `vote_id`     | `INT`     | `NOT NULL`, `KEY`                                   | Foreign key linking to the `votes` table, identifying the specific vote record.                    |
-| `option_id`   | `INT`     | `NOT NULL`, `KEY`                                   | Foreign key linking to the `poll_options` table, indicating which option was selected in the poll. |
 
-| **Index Name**        | Description                                                                 |
-|-----------------------|-----------------------------------------------------------------------------|
-| `PRIMARY`             | Unique index on `poll_vote_id`.                                             |
-| `vote_id`             | Index for quick lookup of votes related to specific `vote_id`.              |
-| `option_id`           | Index for quick lookup of options related to specific `option_id`.          |
+**Poll Votes**
+
+| Column Name    | Data Type | Constraints                                 | Description                                                                                        |
+| -------------- | --------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `poll_vote_id` | `INT`     | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY` | Unique identifier for each poll vote entry.                                                        |
+| `vote_id`      | `INT`     | `NOT NULL`, `KEY`                           | Foreign key linking to the `votes` table, identifying the specific vote record.                    |
+| `option_id`    | `INT`     | `NOT NULL`, `KEY`                           | Foreign key linking to the `poll_options` table, indicating which option was selected in the poll. |
+| `user_id`      | `INT`     | `NOT NULL`, `KEY user_id`, `FOREIGN KEY`    | Foreign key linking to the `users` table, indicating for polling integrity.                        |
+
+| **Index Name**                | Description                                                                      |
+| ----------------------------- | -------------------------------------------------------------------------------- |
+| `PRIMARY`                     | Unique index on `poll_vote_id`.                                                  |
+| `FK_Poll_Votes_Users_User_ID` | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| `FK_Poll_Votes_Votes_Vote_ID` | `FOREIGN KEY` REFERENCES `votes` (`vote_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 
 ---
 
@@ -295,10 +302,10 @@ The online voting system's architecture must be enough to handle high volumes of
 | `action`    | `varchar(255)` | `NOT NULL`                                  |
 | `timestamp` | `datetime`     | `NOT NULL DEFAULT CURRENT_TIMESTAMP`        |
 
-| **Indexes** | **Description** |                                                                                  |
-| ----------- | --------------- | -------------------------------------------------------------------------------- |
-| `PRIMARY`   | (`log_id`)      |                                                                                  |
-| `vote_id`   | (`vote_id`)     | `FOREIGN KEY` REFERENCES `votes` (`vote_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| **Indexes**                   | **Description**                 |                                                                                  |
+| ----------------------------- | ------------------------------- | -------------------------------------------------------------------------------- |
+| `PRIMARY`                     | (`log_id`)                      |                                                                                  |
+| `FK_Audit_Logs_Votes_Vote_ID` | (`FK_Audit_Logs_Votes_Vote_ID`) | `FOREIGN KEY` REFERENCES `votes` (`vote_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 
 ---
 
@@ -310,10 +317,11 @@ The online voting system's architecture must be enough to handle high volumes of
 | `poll_id`     | `int`          | `NOT NULL`, `KEY poll_id`, `FOREIGN KEY`    |
 | `option_text` | `varchar(255)` | `NOT NULL`                                  |
 
-| **Indexes** | **Description** |                                                                                            |
-| ----------- | --------------- | ------------------------------------------------------------------------------------------ |
-| `PRIMARY`   | (`option_id`)   |                                                                                            |
-| `poll_id`   | (`poll_id`)     | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| **Indexes**                               | **Description**                             |                                                                                            |
+| ----------------------------------------- | ------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| `PRIMARY`                                 | (`option_id`)                               |                                                                                            |
+| `FK_Poll_Options_Vote_Types_Vote_Type_ID` | (`FK_Poll_Options_Vote_Types_Vote_Type_ID`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| `FK_Poll_Options_Poll_Votes_Poll_ID`      | (`FK_Poll_Options_Poll_Votes_Poll_ID`)      | `FOREIGN KEY` REFERENCES `poll_votes` (`poll_id`) ON DELETE CASCADE ON UPDATE CASCADE      |
 
 ---
 
@@ -329,11 +337,11 @@ The online voting system's architecture must be enough to handle high volumes of
 | `date_of_birth`         | `date`         | `NOT NULL`                                       |
 | `account_creation_date` | `datetime`     | `NOT NULL DEFAULT CURRENT_TIMESTAMP`             |
 
-| **Indexes**          | **Description** |                                                                                  |
-| -------------------- | --------------- | -------------------------------------------------------------------------------- |
-| `PRIMARY`            | (`user_id`)     |                                                                                  |
-| `username`           | (`username`)    | UNIQUE                                                                           |
-| `fk_profile_user_id` | (`user_id`)     | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| **Indexes**                 | **Description** |                                                                                  |
+| --------------------------- | --------------- | -------------------------------------------------------------------------------- |
+| `PRIMARY`                   | (`user_id`)     |                                                                                  |
+| `username`                  | (`username`)    | UNIQUE                                                                           |
+| `FK_Profiles_Users_User_ID` | (`user_id`)     | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 
 ---
 
@@ -366,29 +374,28 @@ The online voting system's architecture must be enough to handle high volumes of
 | `type_name`    | `enum('poll','electoral')` | `NOT NULL`                                  |
 | `title`        | `varchar(255)`             | `NOT NULL`                                  |
 
-| **Indexes** | **Description**  |     |
-| ----------- | ---------------- | --- |
-| `PRIMARY`   | (`vote_type_id`) |     |
+| **Indexes**                        | **Description**                      |                                                                                       |
+| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------- |
+| `PRIMARY`                          | (`vote_type_id`)                     |                                                                                       |
+| `FK_Vote_Types_Votes_Vote_Type_ID` | (`FK_Vote_Types_Votes_Vote_Type_ID`) | `FOREIGN KEY` REFERENCES `votes` (`vote_type_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 
 ---
 
 **Votes Table**
 
-| Column Name      | Data Type  | Constraints                                       |
-| ---------------- | ---------- | ------------------------------------------------- |
-| `vote_id`        | `int`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`       |
-| `user_id`        | `int`      | `NOT NULL`, `KEY user_id`, `FOREIGN KEY`          |
-| `vote_type_id`   | `int`      | `NOT NULL`, `KEY vote_type_id`, `FOREIGN KEY`     |
-| `vote_timestamp` | `datetime` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`              |
-| `approved`       | `tinyint`  | `NOT NULL DEFAULT '0'`                            |
+| Column Name      | Data Type  | Constraints                                   |
+| ---------------- | ---------- | --------------------------------------------- |
+| `vote_id`        | `int`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`   |
+| `user_id`        | `int`      | `NOT NULL`, `KEY user_id`, `FOREIGN KEY`      |
+| `vote_type_id`   | `int`      | `NOT NULL`, `KEY vote_type_id`, `FOREIGN KEY` |
+| `vote_timestamp` | `datetime` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`          |
+| `approved`       | `tinyint`  | `NOT NULL DEFAULT '0'`                        |
 
-| **Indexes**    | **Description**  |                                                                                            |
-| -------------- | ---------------- | ------------------------------------------------------------------------------------------ |
-| `PRIMARY`      | (`vote_id`)      |                                                                                            |
-| `user_id`      | (`user_id`)      | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE           |
-| `vote_type_id` | (`vote_type_id`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`) ON DELETE CASCADE ON UPDATE CASCADE |
-| `candidate_id` | (`candidate_id`) | `FOREIGN KEY` REFERENCES `candidates` (`candidate_id`) ON DELETE CASCADE ON UPDATE CASCADE |
-| `option_id`    | (`option_id`)    | `FOREIGN KEY` REFERENCES `poll_options` (`option_id`) ON DELETE CASCADE ON UPDATE CASCADE  |
+| **Indexes**                        | **Description**                      |                                                                                            |
+| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
+| `PRIMARY`                          | (`vote_id`)                          |                                                                                            |
+| `FK_Votes_Users_User_ID`           | (`FK_Votes_Users_User_ID`)           | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE           |
+| `FK_Votes_Vote_Types_Vote_Type_ID` | (`FK_Votes_Vote_Types_Vote_Type_ID`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`) ON DELETE CASCADE ON UPDATE CASCADE |
 
 ## ERD
 
