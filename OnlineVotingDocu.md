@@ -218,9 +218,7 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ### Database Tables
 
-**Poll Votes**
-
-**Users Table**
+**User Table**
 
 | Column Name             | Data Type      | Constraints                                 |
 | ----------------------- | -------------- | ------------------------------------------- |
@@ -311,21 +309,96 @@ The online voting system's architecture must be enough to handle high volumes of
 
 ---
 
-**Votes Table**
+**Ballots Table**
 
-| Column Name      | Data Type  | Constraints                                   |
-| ---------------- | ---------- | --------------------------------------------- |
-| `vote_id`        | `INT`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY`   |
-| `user_id`        | `INT`      | `NOT NULL`, `KEY user_id`, `FOREIGN KEY`      |
-| `vote_type_id`   | `INT`      | `NOT NULL`, `KEY vote_type_id`, `FOREIGN KEY` |
-| `vote_timestamp` | `DATETIME` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`          |
-| `approved`       | `tinyint`  | `NOT NULL DEFAULT '0'`                        |
+| Column Name | Data Type  | Constraints                                 |
+| ----------- | ---------- | ------------------------------------------- |
+| `ballot_id` | `INT`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY` |
+| `event_id`  | `INT`      | `NOT NULL`, `KEY event_id`, `FOREIGN KEY`   |
+| `user_id`   | `INT`      | `NOT NULL`, `KEY user_id`, `FOREIGN KEY`    |
+| `cast_at`   | `DATETIME` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`        |
 
-| **Indexes**                        | **Description**                      |                                                                                            |
-| ---------------------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------ |
-| `PRIMARY`                          | (`vote_id`)                          |                                                                                            |
-| `FK_Votes_Users_User_ID`           | (`FK_Votes_Users_User_ID`)           | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE           |
-| `FK_Votes_Vote_Types_Vote_Type_ID` | (`FK_Votes_Vote_Types_Vote_Type_ID`) | `FOREIGN KEY` REFERENCES `vote_types` (`vote_type_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| **Indexes**                            | **Description** |                                                                                          |
+| -------------------------------------- | --------------- | ---------------------------------------------------------------------------------------- |
+| `PRIMARY`                              | (`ballot_id`)   |                                                                                          |
+| `FK_Ballots_Voting_Event_Event_ID_idx` | (`event_id`)    | `FOREIGN KEY` REFERENCES `voting_event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| `FK_Ballot_User_User_ID_idx`           | (`user_id`)     | `FOREIGN KEY` REFERENCES `user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE          |
+
+---
+
+**Electoral Position Table**
+
+| Column Name            | Data Type      | Constraints                              |
+| ---------------------- | -------------- | ---------------------------------------- |
+| `position_id`          | `INT`          | `NOT NULL`, `PRIMARY KEY`                |
+| `event_id`             | `INT`          | `NOT NULL`, `PRIMARY KEY`, `FOREIGN KEY` |
+| `position_name`        | `VARCHAR(100)` | `NOT NULL`, `UNIQUE`                     |
+| `position_description` | `TEXT`         | `NOT NULL`                               |
+| `hierarchy_level`      | `INT`          | `NOT NULL`                               |
+| `max_votes`            | `INT`          | `NOT NULL DEFAULT '1'`                   |
+
+| **Indexes**                                        | **Description**             |                                                                                          |
+| -------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------------------- |
+| `PRIMARY`                                          | (`position_id`, `event_id`) |                                                                                          |
+| `position_name_UNIQUE`                             | (`position_name`)           | `UNIQUE`                                                                                 |
+| `FK_Electoral_Position_Voting_Events_Event_ID_idx` | (`event_id`)                | `FOREIGN KEY` REFERENCES `voting_event` (`event_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+
+---
+
+**Electoral Candidate Table**
+
+| Column Name            | Data Type      | Constraints               |
+| ---------------------- | -------------- | ------------------------- |
+| `candidate_id`         | `INT`          | `NOT NULL`, `PRIMARY KEY` |
+| `event_id`             | `INT`          | `NOT NULL`, `FOREIGN KEY` |
+| `position_id`          | `INT`          | `NOT NULL`, `FOREIGN KEY` |
+| `name`                 | `VARCHAR(255)` | `NOT NULL`                |
+| `biography`            | `TEXT`         |                           |
+| `education_background` | `TEXT`         |                           |
+| `political_history`    | `TEXT`         |                           |
+| `campaign_platform`    | `TEXT`         |                           |
+| `image_url`            | `VARCHAR(255)` | `DEFAULT NULL`            |
+
+| **Indexes**                                                  | **Description**  |                                                                                 |
+| ------------------------------------------------------------ | ---------------- | ------------------------------------------------------------------------------- |
+| `PRIMARY`                                                    | (`candidate_id`) |                                                                                 |
+| `FK_Electoral_Candiates_Voting_Events_Event_ID_idx`          | (`event_id`)     | `FOREIGN KEY` REFERENCES `voting_event` (`event_id`) ON UPDATE CASCADE          |
+| `FK_Electoral_Candidates_Electoral_Position_Position_ID_idx` | (`position_id`)  | `FOREIGN KEY` REFERENCES `electoral_position` (`position_id`) ON UPDATE CASCADE |
+
+---
+
+**Ballot Details Table**
+
+| Column Name        | Data Type | Constraints                                 |
+| ------------------ | --------- | ------------------------------------------- |
+| `ballot_detail_id` | `INT`     | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY` |
+| `ballot_id`        | `INT`     | `NOT NULL`, `FOREIGN KEY`                   |
+| `position_id`      | `INT`     | `NOT NULL`, `FOREIGN KEY`                   |
+| `candidate_id`     | `INT`     | `NOT NULL`, `FOREIGN KEY`                   |
+
+| **Indexes**                                              | **Description**      |                                                                                                     |
+| -------------------------------------------------------- | -------------------- | --------------------------------------------------------------------------------------------------- |
+| `PRIMARY`                                                | (`ballot_detail_id`) |                                                                                                     |
+| `FK_Ballot_Details_Ballots_Ballot_ID_idx`                | (`ballot_id`)        | `FOREIGN KEY` REFERENCES `ballots` (`ballot_id`) ON DELETE CASCADE ON UPDATE CASCADE                |
+| `FK_Ballot_Details_Electoral_Position_Position_ID_idx`   | (`position_id`)      | `FOREIGN KEY` REFERENCES `electoral_position` (`position_id`) ON DELETE CASCADE ON UPDATE CASCADE   |
+| `FK_Ballot_Details_Electoral_Candidate_Candidate_ID_idx` | (`candidate_id`)     | `FOREIGN KEY` REFERENCES `electoral_candidate` (`candidate_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+
+---
+
+**Poll Votes Table**
+
+| Column Name      | Data Type  | Constraints                                 |
+| ---------------- | ---------- | ------------------------------------------- |
+| `vote_id`        | `INT`      | `NOT NULL`, `AUTO_INCREMENT`, `PRIMARY KEY` |
+| `poll_option_id` | `INT`      | `NOT NULL`, `FOREIGN KEY`                   |
+| `user_id`        | `INT`      | `NOT NULL`, `FOREIGN KEY`                   |
+| `voted_at`       | `DATETIME` | `NOT NULL DEFAULT CURRENT_TIMESTAMP`        |
+
+| **Indexes**                                | **Description**    |                                                                                           |
+| ------------------------------------------ | ------------------ | ----------------------------------------------------------------------------------------- |
+| `PRIMARY`                                  | (`vote_id`)        |                                                                                           |
+| `FK_Poll_Votes_Poll_Options_Option_ID_idx` | (`poll_option_id`) | `FOREIGN KEY` REFERENCES `poll_options` (`option_id`) ON DELETE CASCADE ON UPDATE CASCADE |
+| `FK_Poll_Votes_Users_User_ID_idx`          | (`user_id`)        | `FOREIGN KEY` REFERENCES `users` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE          |
 
 ## ERD
 
